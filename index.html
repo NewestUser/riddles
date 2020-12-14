@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Що е то?</title>
+
+    <style>
+
+        /* Question mark styles */
+        .question-mark {
+            cursor: pointer;
+        }
+
+        .question-mark:hover .overlay {
+            opacity: 100%;
+        }
+
+        .question-mark:active {
+            opacity: 60%;
+        }
+
+        .overlay {
+            opacity: 50%;
+            transition: .5s ease;
+        }
+
+        /* Sticky footer styles */
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            margin-bottom: 60px; /* Margin bottom by footer height */
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px; /* Set the fixed height of the footer here */
+            line-height: 60px; /* Vertically center the text there */
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container pt-md-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <div id="questionmark" class="question-mark">
+                <div class="overlay">
+                    <img width="90" height="135" src="assets/questionmark.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-md-2 justify-content-md-center">
+        <div id="sunflower-image-container" class="col-md-auto">
+            <img src="assets/sunflower.png"/>
+        </div>
+        <div id="riddle-container" class="col-md-auto" style="display: none;">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Що е то?</h5>
+                    <p class="card-text" id="riddle-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-md-4 pb-md-4 justify-content-md-center">
+
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="text-center">© 2020 Copyright: Йордан Каменов</div>
+</footer>
+<!-- Footer -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#questionmark").click(function () {
+
+            if ($("#riddle-container").is(":hidden")) {
+                $("#riddle-container").fadeIn();
+                $("#riddle-container").show();
+                $("sunflower-image-container").fadeIn();
+            }
+
+            $("#riddle-text").fadeOut(function () {
+                $("#riddle-text").text(randomRiddle()).fadeIn();
+            });
+        });
+    });
+
+    function randomRiddle() {
+        const riddles = ["foo", "bar", "zar", "gar", "far"];
+        const index = Math.floor(Math.random() * riddles.length);
+        return riddles[index];
+    }
+</script>
+</body>
+</html>
